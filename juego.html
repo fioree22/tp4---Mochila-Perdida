@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Mochila Perdida</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <p>Abres la mochila y te encuentras con 3 objetos, inspeccionalos para descubrir al dueño de la mochila.
+    </p>
+    <div class="contenedor">
+        <div class="objeto">
+            <img src="imagenes/computadora-portatil_318-430182.avif" width="250px" height="250px" alt="">
+            <p id="descripcion-1"></p>
+            <p id="estado-1"></p>
+            <p id="pista-1"></p>
+            <button onclick="inspeccionar(1)">Inspeccionar</button>
+        </div>
+
+        <div class="objeto">
+            <img src="imagenes/mellada.png" width="200px" height="200px" alt="">
+            <p id="descripcion-2"></p>
+            <p id="estado-2"></p>
+            <p id="pista-2"></p>
+            <button onclick="inspeccionar(2)">Inspeccionar</button>
+        </div>
+        <div class="objeto">
+            <img src="imagenes/eyeglasses.webp" width="250px" height="250px" alt="">
+            <p id="descripcion-3"></p>
+            <p id="estado-3"></p>
+            <p id="pista-3"></p>
+            <button onclick="inspeccionar(3)">Inspeccionar</button>
+        </div>
+    </div>
+
+    <p id="mensaje"></p>
+
+    <p id="progreso">Objetos resueltos: 0 de 3</p>
+
+    <button id="botonFinal" onclick="location.href='final.html'" style="display:none;">
+        Descubrir al dueño
+    </button>
+
+    <script>
+
+        let objetos = [
+            {
+                id: 1,
+                nombre: "Netbook",
+                descripcion: "Netbook con stickers de ciberseguridad.",
+                pregunta: "¿Qué carrera estudia? (Artes, Turismo, Informática, Forestal, Comunicaciones)",
+                respuestaCorrecta: "Informática",
+                pistaDesbloqueada: "El dueño estudia informática y va a la escuela en ambos turnos.",
+                resuelto: false
+            },
+
+            {
+                id: 2,
+                nombre: "Medalla de oro",
+                descripcion: "Medalla del primer puesto de una competencia de gimnasia artística.",
+                pregunta: "¿Qué deporte practica el dueño? (Natación, Fútbol, Gimnasia artística, Tenis)",
+                respuestaCorrecta: "Gimnasia artística",
+                pistaDesbloqueada: "El dueño practica gimnasia artística y ganó una competencia recientemente.",
+                resuelto: false
+            },
+
+            {
+                id: 3,
+                nombre: "Anteojos",
+                descripcion: "Unos anteojos con la inicial V grabada.",
+                pregunta: "¿Qué objeto necesita para ver con claridad?",
+                respuestaCorrecta: "Anteojos",
+                pistaDesbloqueada: "El dueño utiliza anteojos y su nombre comienza por la letra V",
+                resuelto: false
+            }
+        ];
+
+
+
+        function inspeccionar(id) {
+
+            let objeto = null;
+
+            for (let i = 0; i < objetos.length; i++) {
+
+                if (objetos[i].id == id) {
+                    objeto = objetos[i];
+                }
+
+            }
+
+            if (objeto.resuelto == true) {
+
+                document.getElementById("mensaje").innerHTML =
+                    "¡Ya resolviste este objeto!";
+
+            }
+            else {
+
+                document.getElementById("descripcion-" + id).innerHTML =
+                    objeto.descripcion;
+
+                setTimeout(function () {
+
+                    let respuesta = prompt(objeto.pregunta);
+
+                    if (respuesta == null || respuesta == "") {
+
+                        document.getElementById("mensaje").innerHTML =
+                            "No ingresaste ninguna respuesta.";
+
+                    }
+                    else if (respuesta == objeto.respuestaCorrecta) {
+
+                        objeto.resuelto = true;
+
+                        document.getElementById("estado-" + id).innerHTML =
+                            "¡Resuelto!";
+
+                        document.getElementById("pista-" + id).innerHTML =
+                            objeto.pistaDesbloqueada;
+
+                        document.getElementById("mensaje").innerHTML =
+                            "¡Respuesta correcta! Desbloqueaste una pista.";
+
+                        actualizarProgreso();
+
+                    }
+                    else {
+
+                        document.getElementById("mensaje").innerHTML =
+                            "Respuesta incorrecta. ¡Intentalo nuevamente!";
+
+                    }
+
+                }, 100);
+
+            }
+
+        }
+
+        function actualizarProgreso() {
+
+            let cantidad = 0;
+
+            for (let i = 0; i < objetos.length; i++) {
+
+                if (objetos[i].resuelto == true) {
+
+                    cantidad++;
+
+                }
+
+            }
+
+            document.getElementById("progreso").innerHTML =
+                "Objetos resueltos: " + cantidad + " de " + objetos.length;
+
+            if (cantidad == objetos.length) {
+
+                document.getElementById("mensaje").innerHTML =
+                    "¡Encontraste todas las pistas! Ya puedes descubrir al dueño.";
+
+                document.getElementById("botonFinal").style.display = "block";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

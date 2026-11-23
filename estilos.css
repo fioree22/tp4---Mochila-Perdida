@@ -1,0 +1,106 @@
+body {
+    background-color: #f5eee5;
+    font-family: Arial, sans-serif;
+    color: #49382b;
+    text-align: center;
+    margin: 0;
+    padding: 30px;
+}
+
+
+h1 {
+    color: #765239;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #765239;
+}
+
+
+.introduccion {
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+
+.objeto {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+
+.objeto img {
+    width: 200px;
+    height: 180px;
+    object-fit: contain;
+}
+
+
+button {
+    background-color: #96704e;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #68482f;
+}
+
+#mensaje {
+    font-weight: bold;
+    color: #765239;
+    margin-top: 25px;
+}
+
+
+#progreso {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+#pista-1,
+#pista-2,
+#pista-3 {
+    color: #54805a;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+#estado-1,
+#estado-2,
+#estado-3 {
+    color: #54805a;
+    font-weight: bold;
+}
+
+
+#botonFinal {
+    background-color: #54805a;
+    font-size: 16px;
+    padding: 13px 25px;
+}
+
+#botonFinal:hover {
+    background-color: #365b3c;
+}
